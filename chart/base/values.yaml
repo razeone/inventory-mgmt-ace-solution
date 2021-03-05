@@ -1,0 +1,43 @@
+# Default values for base.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+global: {}
+
+replicaCount: 1
+
+nameOverride: ""
+fullnameOverride: ""
+
+designerFlowsOperationMode: disabled
+
+license:
+  accept: true
+  license: L-APEH-BTHFYQ
+  use: CloudPakForIntegrationNonProduction
+
+image:
+  repository: replace
+  tag: replace
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 300Mi
+  requests:
+    cpu: 300m
+    memory: 300Mi
+
+router:
+  timeout: 120s
+
+service:
+  endpointType: http
+
+useCommonServices: true
+
+version: 11.0.0.10-r3-eus
+
+vcsInfo:
+  repoUrl: ""
+  branch: ""

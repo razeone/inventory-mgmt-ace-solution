@@ -1,0 +1,38 @@
+apiVersion: appconnect.ibm.com/v1beta1
+kind: IntegrationServer
+metadata:
+  name: {{ include "starter-kit.fullname" . }}
+  annotations:
+  {{- if and .Values.vcsInfo.repoUrl .Values.vcsInfo.branch }}
+    app.openshift.io/vcs-ref: {{ .Values.vcsInfo.branch }}
+    app.openshift.io/vcs-uri: {{ trimSuffix ".git" .Values.vcsInfo.repoUrl }}
+  {{- end }}
+  labels:
+    app.kubernetes.io/name: {{ include "starter-kit.name" . }}
+    helm.sh/chart: {{ include "starter-kit.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app: {{ .Release.Name }}
+spec:
+  designerFlowsOperationMode: {{ .Values.designerFlowsOperationMode }}
+  license:
+    accept: {{ .Values.license.accept }}
+    license: {{ .Values.license.license }}
+    use: {{ .Values.license.use }}
+  pod:
+    containers:
+      runtime:
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+  replicas: {{ .Values.replicaCount }}
+  router:
+    timeout: {{ .Values.router.timeout }}
+  service:
+    endpointType: {{ .Values.service.endpointType }}
+  useCommonServices: {{ .Values.useCommonServices }}
+  version: {{ .Values.version }}

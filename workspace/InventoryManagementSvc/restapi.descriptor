@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.restapi" xmlns:ns2="http://com.ibm.etools.mft.descriptor.base" definitionType="swagger_20" definitionFile="ace-inventory-management-svc.json" implementation="gen/InventoryManagementSvc.msgflow" https="false">
+    <operations>
+        <operation name="listStockItemsUsingGET" implementation="listStockItemsUsingGET.subflow"/>
+    </operations>
+    <errorHandlers/>
+</restapiDescriptor>

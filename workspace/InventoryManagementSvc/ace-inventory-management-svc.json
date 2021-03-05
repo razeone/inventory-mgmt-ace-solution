@@ -1,0 +1,73 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Description",
+    "version" : "1.0.0",
+    "title" : "template-spring-boot",
+    "license" : {
+      "name" : "MIT"
+    }
+  },
+  "host" : "INVENTORY_MANAGEMENT_SVC_BASE_URL",
+  "basePath" : "/api",
+  "tags" : [ {
+    "name" : "stock-item-controller",
+    "description" : "Stock Item Controller"
+  } ],
+  "paths" : {
+    "/stock-items" : {
+      "get" : {
+        "tags" : [ "stock-item-controller" ],
+        "summary" : "listStockItems",
+        "operationId" : "listStockItemsUsingGET",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/StockItem"
+              }
+            }
+          },
+          "401" : {
+            "description" : "Unauthorized"
+          },
+          "403" : {
+            "description" : "Forbidden"
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        },
+        "deprecated" : false
+      }
+    }
+  },
+  "definitions" : {
+    "StockItem" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "manufacturer" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "price" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "stock" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "title" : "StockItem"
+    }
+  }
+}
